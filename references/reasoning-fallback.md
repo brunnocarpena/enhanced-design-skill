@@ -2,7 +2,7 @@
 
 Use quando `ui-ux-pro-max` e/ou `frontend-design` **não** estiverem instaladas. O ponto da fase 1 não é gerar código rápido — é o contrário: **forçar o modelo a raciocinar antes de escrever a primeira linha**, pra o resultado não sair genérico.
 
-> Se as skills estiverem instaladas, invoque-as (`Skill: ui-ux-pro-max`, `Skill: frontend-design`). Este é o plano B.
+> Caminho principal: o motor do ui-ux-pro-max via Bash ([ui-ux-pro-max-engine.md](ui-ux-pro-max-engine.md)) + os 2 passes de [aesthetic-direction.md](aesthetic-direction.md). Este arquivo é o plano B quando o motor falha (Python ausente, script movido) e nenhuma das skills está disponível.
 
 ## Antes de qualquer código, decidir explicitamente (busca em 5 domínios)
 
@@ -20,7 +20,10 @@ Use quando `ui-ux-pro-max` e/ou `frontend-design` **não** estiverem instaladas.
 - Copy genérica ("Bem-vindo à nossa plataforma").
 - Hero com stock photo genérica.
 
+## Estética não é sistema
+Escolher um estilo (glass, brutalista, editorial) não substitui tokens, estados e escala. Um DS por projeto: se já existe (shadcn, Astryx, o da marca), ele é a fundação e o estilo se aplica por cima.
+
 ## Saída da fase 1
-Um **design system enxuto** em tokens: cor, tipografia, espaçamento, raio, sombra, movimento — com os anti-padrões acima marcados como proibidos. Registrar em `design.md` do projeto se ele durar mais que a sessão. As fases seguintes constroem em cima disso.
+Um **design system enxuto** em tokens: cor, tipografia, espaçamento, raio, sombra, movimento, com os anti-padrões acima marcados como proibidos. Registrar em `design.md` do projeto no formato de [design-md-template.md](design-md-template.md). As fases seguintes constroem em cima disso.
 
 **Regra de ouro:** quanto mais específico o brief, melhor o resultado. Design skill não lê sua mente — amplifica sua direção. "Redesign drástico, explore paletas e pares de fonte" volta muito diferente de "faz bonito".

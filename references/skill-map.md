@@ -14,18 +14,18 @@ Baseado na thread do @nett0eth "As 5 melhores Skills de Web Design pra Claude" +
 - **Papel:** `/impeccable` + ~20 subcomandos. `animate` (animações coesas), `quieter` (auditoria de "barulho": gradiente demais, peso de fonte pesado, emoji espalhado → enxuga o excesso), `audit` (qualidade + acessibilidade), `document` (gera um `design.md` do design system).
 - **Diferencial:** 46 regras determinísticas de detecção de slop (rodam sem depender do modelo adivinhar). Tem CLI para CI (`npx impeccable detect`) e extensão de Chrome.
 - **Quando:** iterar em cima do que já existe. "Tá exagerado? quieter. Tá sem vida? animate."
-- **Local:** NÃO instalada. Instalar: `npx impeccable install` (Node ≥ 22.12). Site: impeccable.style. ~45,9 mil stars.
+- **Local:** INSTALADA em `~/.claude/skills/impeccable` (05/09/2026, via `npx skills add pbakaus/impeccable -g -a claude-code -s impeccable --copy`). Invocar `Skill: impeccable`. Site: impeccable.style.
 - **Fallback no /enhanced-design:** [slop-rules.md](slop-rules.md).
 
 ### 3. UIUX Pro Max — a que força o Claude a pensar
 - **Papel:** banco de dados de design "com esteroide". 67 estilos de UI, 161 paletas, 57 pares de fonte, 99 diretrizes de UX, 16 tech stacks. Força o modelo a **raciocinar antes de escrever** — busca em 5 domínios em paralelo (produto, estilo, cor, landing, tipografia) e devolve um design system completo com anti-padrões marcados.
 - **Quando:** você tem clareza do conteúdo e quer profundidade de design. Quanto mais específico o brief, melhor — ela amplifica sua direção, não lê sua mente.
-- **Local:** `ui-ux-pro-max` (instalada). Invocar via `Skill: ui-ux-pro-max`. ~105 mil stars.
+- **Local:** `ui-ux-pro-max` (instalada). No /enhanced-design o **motor Python é chamado direto** (`scripts/search.py`, protocolo em [ui-ux-pro-max-engine.md](ui-ux-pro-max-engine.md)); `Skill: ui-ux-pro-max` só quando o usuário quer a skill inteira. ~105 mil stars.
 
 ### 4. Web Design Guidelines — a auditora (Vercel Labs)
 - **Papel:** o QA antes de subir. Audita o código contra 100+ web interface guidelines da Vercel: foco de teclado funcionando, nunca desabilitar zoom, não bloquear paste, indicador de loading em botão, hierarquia de heading, ARIA. Pode anotar os problemas direto no preview (em laranja, onde falta aria-label, onde a navegação por teclado quebra).
 - **Quando:** o design já tá bom e você quer garantir que é acessível e não constrange quem usa teclado/leitor de tela.
-- **Local:** NÃO instalada. Faz parte de `vercel-labs/agent-skills` (coleção oficial da Vercel, ~29 mil stars). ~29 mil stars.
+- **Local:** INSTALADA em `~/.claude/skills/web-design-guidelines` (05/09/2026, via `npx skills add vercel-labs/agent-skills -g -a claude-code -s web-design-guidelines --copy`). Invocar `Skill: web-design-guidelines`.
 - **Fallback no /enhanced-design:** [web-interface-guidelines.md](web-interface-guidelines.md).
 
 ### 5. Astryx — o design system feito pra agente (Meta)
@@ -33,6 +33,16 @@ Baseado na thread do @nett0eth "As 5 melhores Skills de Web Design pra Claude" +
 - **Quando:** você quer consistência de sistema, não só uma tela bonita. As skills afinam o gosto; o Astryx garante que a fundação já é sólida antes de qualquer prompt. Os dois se somam.
 - **Local:** NÃO instalado. React + StyleX, em beta, ~8,2 mil stars.
 - **Uso no /enhanced-design:** se o projeto adota o Astryx (ou outro DS estabelecido), use-o como fundação na fase 1.5 em vez de inventar tokens. Não force — ofereça.
+
+## Absorvida sem instalar: taste-skill (Leonxlnx)
+
+- **Origem:** github.com/Leonxlnx/taste-skill, auditada no commit 87da8a4 (29/09/2026), licença MIT. Segura, mas **não instalada**: o conhecimento foi destilado para as references e filtrado pelas regras da casa.
+- **O que entrou:** Design Read, dials VARIANCE/MOTION/DENSITY e presets por tipo de página, os 2 passes (plano de tokens + crítica) e os defaults de calibração → [aesthetic-direction.md](aesthetic-direction.md); variantes soft/minimalist/brutalist/stitch → [style-presets.md](style-presets.md); redesign-skill → [redesign-protocol.md](redesign-protocol.md); image-to-code e imagegen web/mobile → [image-to-code.md](image-to-code.md); brandkit → [brandkit.md](brandkit.md); formato DESIGN.md do Stitch → [design-md-template.md](design-md-template.md); motion → [motion-patterns.md](motion-patterns.md); checagens mecânicas de slop → [slop-rules.md](slop-rules.md).
+- **O que ficou de fora (conflito com a casa ou risco):** max-width de página, colunas travadas por breakpoint, truncate, card com borda lateral, número inventado para "encher", CTA em estilo próprio, RNG/variância obrigatória, `overflow-x-hidden` global, `npx shadcn@latest` e instalação sem versão, hotlink de CDN e picsum, dependência do Stitch, geração de imagem sem aprovar custo, proibição de Lucide/serif contra a marca, `transition: all`, números sempre em mono, `grid-flow-dense`, floating label, janela fake de macOS.
+
+## Frontend-design (plugin)
+
+A versão do plugin (`frontend-design:frontend-design`) é a canônica. Os princípios de direção (grounding, ênfase na mesma família, restrição, um momento de motion, escrita de interface) e os tells de calibração foram destilados em [aesthetic-direction.md](aesthetic-direction.md) e [slop-rules.md](slop-rules.md); invocar a skill quando a direção pede mais profundidade.
 
 ## As que o Brunno já tem além da thread
 
