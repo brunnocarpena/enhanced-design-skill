@@ -1,6 +1,6 @@
 ---
 name: enhanced-design
-description: Use sempre que for CRIAR, REDESENHAR ou fazer QA de qualquer interface web/mobile (landing page, página de captura ou de vendas, dashboard, app, componente, formulário) e o resultado não pode sair genérico. TRIGGER quando o usuário diz "enhanced design", "design caprichado", "roda tudo de design", "página premium", "não quero genérico", "cara de IA", "taste", "redesign", "refazer o visual", "polir a UI", "deixa lindo", "web design", "landing bonita", "brandkit", "logo", "transformar print/imagem em código", "animação", "micro-interação", "scroll", "GSAP", "site cinematográfico", "3D", "WebGL", "Three.js", "Spline", "tipo Apple"; quando a sessão cria ou edita hero, seções, componentes, formulários, temas ou tipografia; ANTES de qualquer deploy de página pública. SKIP em mudança só de backend/API/schema sem impacto visual, ou quando o usuário pede explicitamente UMA skill específica ("roda só o performance-audit").
+description: Use sempre que for CRIAR, REDESENHAR ou fazer QA de qualquer interface web/mobile (landing page, página de captura ou de vendas, dashboard, app, componente, formulário) e o resultado não pode sair genérico. TRIGGER quando o usuário diz "enhanced design", "design caprichado", "roda tudo de design", "página premium", "não quero genérico", "cara de IA", "taste", "redesign", "refazer o visual", "polir a UI", "deixa lindo", "web design", "landing bonita", "brandkit", "logo", "transformar print/imagem em código", "animação", "micro-interação", "scroll", "GSAP", "site cinematográfico", "3D", "WebGL", "Three.js", "Spline", "tipo Apple", "tá cortado", "ficou por cima", "quebrou no celular", "arruma esse print"; quando a sessão cria ou edita hero, seções, componentes, formulários, temas ou tipografia; ANTES de qualquer deploy de página pública. SKIP em mudança só de backend/API/schema sem impacto visual, ou quando o usuário pede explicitamente UMA skill específica ("roda só o performance-audit").
 argument-hint: [escopo-ou-url?] [--mode=build|refine|audit] [--target=mobile|desktop|both]
 allowed-tools: Read, Grep, Glob, Skill, Task, WebFetch, Bash(python3:*), Bash(cd:*), Bash(git diff:*), Bash(git status:*), Bash(ls:*), Bash(find:*), Bash(wc:*)
 ---
@@ -33,6 +33,7 @@ E UM QA QUE NÃO DEIXA SUBIR NADA GENÉRICO, LENTO OU INCONGRUENTE.
 | Brief pede marca/logo | [brandkit.md](references/brandkit.md) |
 | Saída da Fase 1 | [design-md-template.md](references/design-md-template.md) |
 | Modo refine | [redesign-protocol.md](references/redesign-protocol.md) |
+| Corrigir defeito, print do cliente, "tá cortado/por cima/quebrou no celular" | [fix-requests.md](references/fix-requests.md) |
 | Tem print, Claude Design, Figma ou vai gerar referência | [image-to-code.md](references/image-to-code.md) |
 | Qualquer motion (defaults e proibições) | [motion-patterns.md](references/motion-patterns.md) |
 | Micro-interação ou revisar animação | [motion-craft.md](references/motion-craft.md) |
@@ -49,7 +50,9 @@ Ler só a referência da fase atual, não todas de uma vez.
 
 - **build**: interface nova. Fases 0 → 5 completas.
 - **refine**: melhorar o que existe. Fase 0 → [redesign-protocol.md](references/redesign-protocol.md) → Fase 2 → 4 → 5. Nunca reescrever nem migrar stack.
-- **audit**: só Fase 4 + gate. Não redesenha.
+- **audit**: só Fase 4 + gate. Não redesenha. Print com defeito → auditoria por impacto de [fix-requests.md](references/fix-requests.md) seção 2.
+
+Em refine e audit, toda correção de layout leva os blocos **Preserve / Não use / Validação** ([fix-requests.md](references/fix-requests.md) seção 3) e um defeito de layout por vez.
 
 Se ambíguo, perguntar **uma vez**.
 

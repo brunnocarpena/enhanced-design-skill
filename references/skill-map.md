@@ -49,6 +49,11 @@ Clonadas, auditadas (sem injeção de prompt) e reescritas com palavras própria
 - **CloudAI-X/threejs-skills** @b1c6230 (sem licença), **robbertvanempel/scroll-world-skill** @21da15c (sem licença), **zubair-trabzada/scroll-cinematic-claude** @5f3cc0e (sem licença), **amirmushichge/cinematic-scroll-prompt-kit** @39ac222 (MIT) → [cinematic-mode.md](cinematic-mode.md): ativação por aceite, matriz de 6 motores, pipeline de frames, scroll-world, Three.js/R3F, Spline, brief 2.5D, 10 guarda-corpos. Das sem licença entrou só conhecimento, nenhum trecho copiado.
 - **O que ficou de fora:** scripts e engine do zubair e do scroll-world (escrever o nosso), ffmpeg baixado de site de terceiro (só `brew install ffmpeg`), Lenis/unpkg sem SRI, decoders Draco/Basis de CDN, ID opaco de modelo do Higgsfield e qualquer geração paga sem ok, ScrollSmoother/Observer por padrão (scroll-jacking), `quickTo` como cursor customizado, `gsap.context` como padrão em React.
 
+## Absorvida sem instalar: correção sem quebrar (30/09/2026)
+
+- **Djuniorss/termos-ui-ux** @e52e898, MIT, auditada (sem injeção de prompt, sem Unicode oculto; scripts Python só montam o próprio repo) → [fix-requests.md](fix-requests.md): índice de sintomas (frase do cliente → termo → correção), auditoria de print por impacto (quebrado > atrapalha > acabamento, ~7 itens, um defeito de layout por vez), blocos Preserve / Não use / Validação com validação por tipo de defeito, diagnóstico de camada x corte antes do z-index, pegadinhas do celular (safe area, zoom do iOS, teclado, tap delay) e mídia (object-position, scrim, carrossel scroll-snap, `<picture>`).
+- **O que ficou de fora:** container com max-width 1200px e texto em 65ch (casa proíbe), truncation com reticências (casa proíbe), ease-in na saída e durações genéricas (motion-craft é mais preciso), travessão nos modelos, e os capítulos de cards/botões/formulários/tabelas/estados/a11y (já cobertos por web-interface-guidelines e house-rules).
+
 ## Frontend-design (plugin)
 
 A versão do plugin (`frontend-design:frontend-design`) é a canônica. Os princípios de direção (grounding, ênfase na mesma família, restrição, um momento de motion, escrita de interface) e os tells de calibração foram destilados em [aesthetic-direction.md](aesthetic-direction.md) e [slop-rules.md](slop-rules.md); invocar a skill quando a direção pede mais profundidade.

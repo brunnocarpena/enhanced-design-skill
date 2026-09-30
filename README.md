@@ -50,6 +50,7 @@ enhanced-design/
     ├── style-presets.md            # 7 presets para projeto sem identidade
     ├── design-md-template.md       # formato do design.md (Stitch adaptado)
     ├── redesign-protocol.md        # modo refine
+    ├── fix-requests.md             # corrigir sem quebrar: sintomas, auditoria de print, Preserve/Não use/Validação
     ├── image-to-code.md            # print/Claude Design/Figma → código; geração de referência
     ├── brandkit.md                 # marca e logo do zero
     ├── motion-patterns.md          # defaults de motion, proibições, ponteiros
