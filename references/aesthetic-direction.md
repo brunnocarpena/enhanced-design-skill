@@ -19,7 +19,7 @@ Três números de 1 a 10 que viram gatilho de regra:
 | Dial | 1-3 | 4-7 | 8-10 |
 |---|---|---|---|
 | **VARIANCE** (quanto foge do grid previsível) | Simétrico, centralizado | Assimetria pontual no desktop | Composição quebrada, editorial |
-| **MOTION** | Só `:hover`/`:active` | Reveal nas seções-chave + entrada do hero | Coreografia de scroll (pin, pan) |
+| **MOTION** | Só `:hover`/`:active` | Reveal nas seções-chave + entrada do hero | 8: coreografia de scroll (pin, pan). 9-10: **modo cinematográfico** (3D, frames, scroll-world), só com aceite no design.md → [cinematic-mode.md](cinematic-mode.md) |
 | **DENSITY** | Muito respiro | Padrão | Denso: 1px entre dados, sem card |
 
 Presets da casa:
@@ -31,9 +31,10 @@ Presets da casa:
 | Portfólio / agência / demo sitesfixe | 8/7/3 |
 | Editorial / blog | 6/4/3 |
 | Dashboard / painel interno | 3/2/7 |
+| Site cinematográfico / vitrine 3D (cliente aceitou trocar performance por impacto) | 8/10/3 |
 | Redesign preservando | dials do site atual, motion +1 |
 
-Gatilhos: MOTION > 3 obriga `prefers-reduced-motion` forte (loop, parallax, pin e magnético viram estáticos). DENSITY > 7 proíbe card como agrupador. **Motion declarado = motion entregue**: dial ≥ 4 (a faixa 4-7 inteira) exige entrada do hero, reveal nas seções-chave e hover no CTA; se não der para entregar sem quebrar, baixar o dial e entregar estático limpo.
+Gatilhos: toda animação respeita `prefers-reduced-motion`; MOTION > 3 obriga `prefers-reduced-motion` forte (loop, parallax, pin e magnético viram estáticos). DENSITY > 7 proíbe card como agrupador. **Motion declarado = motion entregue**: dial ≥ 4 (a faixa 4-7 inteira) exige entrada do hero, reveal nas seções-chave e hover no CTA; se não der para entregar sem quebrar, baixar o dial e entregar estático limpo. **MOTION 9-10** exige a linha `Performance: segundo plano (aceite de <quem>, <data>)` no design.md e orçamento de peso declarado; sem ela, o teto é 8. Nunca em captura ou venda com tráfego pago mobile sem pedido explícito.
 
 ## 3. Dois passes: plano, crítica, depois código
 

@@ -18,7 +18,7 @@ Inspirada na thread do [@nett0eth](https://x.com/nett0eth/status/207676378105766
 | 0 | Design Read | ler tipo de página, público e ação principal antes de desenhar |
 | 1 | motor `ui-ux-pro-max` + `frontend-design` + presets | dials, sistema de tokens, direção anti-template, design.md |
 | 2 | `seek-patterns` | acabamentos consolidados da casa |
-| 3 | construção | implementar pelo design.md, motion pelo dial |
+| 3 | construção | implementar pelo design.md, motion pelo dial (micro-interação, GSAP ou modo cinematográfico opcional) |
 | 4a | `performance-audit` | Core Web Vitals sem quebrar conversão |
 | 4b | `web-design-guidelines` + checklist | interface, toque, formulários, estados, a11y |
 | 4c | `impeccable` + checagens mecânicas | anti-slop contado, não achado |
@@ -52,7 +52,10 @@ enhanced-design/
     ├── redesign-protocol.md        # modo refine
     ├── image-to-code.md            # print/Claude Design/Figma → código; geração de referência
     ├── brandkit.md                 # marca e logo do zero
-    ├── motion-patterns.md          # Motion/GSAP, defaults e proibições
+    ├── motion-patterns.md          # defaults de motion, proibições, ponteiros
+    ├── motion-craft.md             # Emil Kowalski: tokens, receitas, checklist de animação
+    ├── gsap-scroll.md              # GSAP + ScrollTrigger + plugins (oficial)
+    ├── cinematic-mode.md           # modo cinematográfico: 6 motores 3D/scroll e guarda-corpos
     ├── house-rules.md              # regras da casa (vencem tudo)
     ├── slop-rules.md               # anti-slop + checagens mecânicas
     ├── web-interface-guidelines.md # interface e acessibilidade

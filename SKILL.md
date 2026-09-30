@@ -1,13 +1,13 @@
 ---
 name: enhanced-design
-description: Use sempre que for CRIAR, REDESENHAR ou fazer QA de qualquer interface web/mobile (landing page, página de captura ou de vendas, dashboard, app, componente, formulário) e o resultado não pode sair genérico. TRIGGER quando o usuário diz "enhanced design", "design caprichado", "roda tudo de design", "página premium", "não quero genérico", "cara de IA", "taste", "redesign", "refazer o visual", "polir a UI", "deixa lindo", "web design", "landing bonita", "brandkit", "logo", "transformar print/imagem em código"; quando a sessão cria ou edita hero, seções, componentes, formulários, temas ou tipografia; ANTES de qualquer deploy de página pública. SKIP em mudança só de backend/API/schema sem impacto visual, ou quando o usuário pede explicitamente UMA skill específica ("roda só o performance-audit").
+description: Use sempre que for CRIAR, REDESENHAR ou fazer QA de qualquer interface web/mobile (landing page, página de captura ou de vendas, dashboard, app, componente, formulário) e o resultado não pode sair genérico. TRIGGER quando o usuário diz "enhanced design", "design caprichado", "roda tudo de design", "página premium", "não quero genérico", "cara de IA", "taste", "redesign", "refazer o visual", "polir a UI", "deixa lindo", "web design", "landing bonita", "brandkit", "logo", "transformar print/imagem em código", "animação", "micro-interação", "scroll", "GSAP", "site cinematográfico", "3D", "WebGL", "Three.js", "Spline", "tipo Apple"; quando a sessão cria ou edita hero, seções, componentes, formulários, temas ou tipografia; ANTES de qualquer deploy de página pública. SKIP em mudança só de backend/API/schema sem impacto visual, ou quando o usuário pede explicitamente UMA skill específica ("roda só o performance-audit").
 argument-hint: [escopo-ou-url?] [--mode=build|refine|audit] [--target=mobile|desktop|both]
 allowed-tools: Read, Grep, Glob, Skill, Task, WebFetch, Bash(python3:*), Bash(cd:*), Bash(git diff:*), Bash(git status:*), Bash(ls:*), Bash(find:*), Bash(wc:*)
 ---
 
 # Enhanced Design
 
-O **maestro de web design**. Encadeia o pipeline que um estúdio seguiria: ler o brief, decidir a direção, montar o sistema, aplicar o acabamento da casa, construir e só subir depois de auditar. Orquestra as skills instaladas (ui-ux-pro-max, frontend-design, seek-patterns, performance-audit, impeccable, web-design-guidelines, congruence) e carrega, em `references/`, o conhecimento destilado da taste-skill, do motor do ui-ux-pro-max e do frontend-design.
+O **maestro de web design**. Encadeia o pipeline que um estúdio seguiria: ler o brief, decidir a direção, montar o sistema, aplicar o acabamento da casa, construir e só subir depois de auditar. Orquestra as skills instaladas (ui-ux-pro-max, frontend-design, seek-patterns, performance-audit, impeccable, web-design-guidelines, congruence) e carrega, em `references/`, o conhecimento destilado da taste-skill, do motor do ui-ux-pro-max, do frontend-design, do Emil Kowalski (motion), das skills oficiais do GSAP e de fontes de 3D/scrollytelling (modo cinematográfico).
 
 ## Princípio central
 
@@ -34,7 +34,10 @@ E UM QA QUE NÃO DEIXA SUBIR NADA GENÉRICO, LENTO OU INCONGRUENTE.
 | Saída da Fase 1 | [design-md-template.md](references/design-md-template.md) |
 | Modo refine | [redesign-protocol.md](references/redesign-protocol.md) |
 | Tem print, Claude Design, Figma ou vai gerar referência | [image-to-code.md](references/image-to-code.md) |
-| Dial MOTION ≥ 4 ou scroll narrativo | [motion-patterns.md](references/motion-patterns.md) |
+| Qualquer motion (defaults e proibições) | [motion-patterns.md](references/motion-patterns.md) |
+| Micro-interação ou revisar animação | [motion-craft.md](references/motion-craft.md) |
+| Scroll narrativo, pin, scrub, SplitText, SVG | [gsap-scroll.md](references/gsap-scroll.md) |
+| MOTION 9-10, 3D, WebGL, frames, scroll-world | [cinematic-mode.md](references/cinematic-mode.md) |
 | Fase 2 | [house-rules.md](references/house-rules.md) |
 | Fase 4b / 4c | [web-interface-guidelines.md](references/web-interface-guidelines.md) / [slop-rules.md](references/slop-rules.md) |
 | Motor falhou ou skill faltando | [reasoning-fallback.md](references/reasoning-fallback.md) |
@@ -69,7 +72,7 @@ Se ambíguo, perguntar **uma vez**.
 10. `Skill: seek-patterns` (fallback: [house-rules.md](references/house-rules.md)). CTA CAIXA ALTA + shimmer, grade auto-fit, sem max-width de página, padding de seção único, primeira dobra visível, fotos distintas, ícone oficial do WhatsApp, UX de formulário, ícone em cima do texto no mobile.
 
 ### Fase 3 - Construção
-11. Implementar seguindo o design.md. Motion pelo dial ([motion-patterns.md](references/motion-patterns.md)). **Zero número fake**, **sem travessão** em texto user-facing, **metadata própria** (title = H1, description = sub + data, og:image da própria página).
+11. Implementar seguindo o design.md. Motion pelo dial ([motion-patterns.md](references/motion-patterns.md); micro-interação pelas receitas e checklist de [motion-craft.md](references/motion-craft.md); scroll narrativo por [gsap-scroll.md](references/gsap-scroll.md); modo cinematográfico só com aceite registrado, por [cinematic-mode.md](references/cinematic-mode.md)). **Zero número fake**, **sem travessão** em texto user-facing, **metadata própria** (title = H1, description = sub + data, og:image da própria página).
 12. Imagem que falta vira slot marcado com proporção, listado no resumo. Geração paga só com ok do usuário.
 13. Dependência nova → `supply-chain-guard` antes (versão exata, nunca `@latest`).
 
@@ -82,6 +85,7 @@ Se ambíguo, perguntar **uma vez**.
 
 ### Fase 5 - Gate de deploy
 - Crítico em performance, a11y ou congruência → **bloqueia**.
+- **Modo cinematográfico** (aceite registrado no design.md): performance crítica vira **aprovado com ressalvas declaradas** (números medidos x orçamento do design.md). A11y, reduced-motion, fallback sem WebGL/JS, poster como LCP e congruência continuam **bloqueando**.
 - Vários altos em slop → **bloqueia** até domar os 3 piores.
 - Só médios/baixos → **aprovado com ressalvas** (listar).
 - Tudo verde → **aprovado**.
@@ -98,6 +102,8 @@ Resumo final sempre: Design Read, dials, preset/direção, uma linha por auditor
 - "Coloco uns números pra encher" → número fake é inviolável.
 - "Rodei o Impeccable" sem ter rodado → dizer o que rodou de fato.
 - "Subo agora, audito depois" → QA é antes.
+- "Cliente vai adorar 3D" sem pedido nem aceite no design.md → modo cinematográfico não entra.
+- "Gero o vídeo no Higgsfield rapidinho" → crédito pago só com ok e custo estimado antes.
 
 ## Excuse | Reality
 
