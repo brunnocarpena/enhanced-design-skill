@@ -2,12 +2,12 @@
 name: enhanced-design
 description: Use sempre que for CRIAR, REDESENHAR ou fazer QA de qualquer interface web/mobile (landing page, página de captura ou de vendas, dashboard, app, componente, formulário) e o resultado não pode sair genérico. TRIGGER quando o usuário diz "enhanced design", "design caprichado", "roda tudo de design", "página premium", "não quero genérico", "cara de IA", "taste", "redesign", "refazer o visual", "polir a UI", "deixa lindo", "web design", "landing bonita", "brandkit", "logo", "transformar print/imagem em código", "animação", "micro-interação", "scroll", "GSAP", "site cinematográfico", "3D", "WebGL", "Three.js", "Spline", "tipo Apple", "tá cortado", "ficou por cima", "quebrou no celular", "arruma esse print"; quando a sessão cria ou edita hero, seções, componentes, formulários, temas ou tipografia; ANTES de qualquer deploy de página pública. SKIP em mudança só de backend/API/schema sem impacto visual, ou quando o usuário pede explicitamente UMA skill específica ("roda só o performance-audit").
 argument-hint: [escopo-ou-url?] [--mode=build|refine|audit] [--target=mobile|desktop|both]
-allowed-tools: Read, Grep, Glob, Skill, Task, WebFetch, Bash(python3:*), Bash(cd:*), Bash(git diff:*), Bash(git status:*), Bash(ls:*), Bash(find:*), Bash(wc:*)
+allowed-tools: Read, Grep, Glob, Skill, Task, AskUserQuestion, WebFetch, Bash(python3:*), Bash(cd:*), Bash(git diff:*), Bash(git status:*), Bash(ls:*), Bash(find:*), Bash(wc:*)
 ---
 
 # Enhanced Design
 
-O **maestro de web design**. Encadeia o pipeline que um estúdio seguiria: ler o brief, decidir a direção, montar o sistema, aplicar o acabamento da casa, construir e só subir depois de auditar. Orquestra as skills instaladas (ui-ux-pro-max, frontend-design, seek-patterns, performance-audit, impeccable, web-design-guidelines, congruence) e carrega, em `references/`, o conhecimento destilado da taste-skill, do motor do ui-ux-pro-max, do frontend-design, do Emil Kowalski (motion), das skills oficiais do GSAP e de fontes de 3D/scrollytelling (modo cinematográfico).
+O **maestro de web design**. Encadeia o pipeline que um estúdio seguiria: **abrir um briefing curto**, ler o brief, decidir a direção, montar o sistema, aplicar o acabamento da casa, construir e só subir depois de auditar. O briefing decide o **nível de impacto** (Enxuto/Equilibrado/Cinematográfico) e é ele que carrega — ou deixa de fora — as sub-skills pesadas (motion, GSAP, 3D). O padrão é a contenção. Orquestra as skills instaladas (ui-ux-pro-max, frontend-design, seek-patterns, performance-audit, impeccable, web-design-guidelines, congruence) e carrega, em `references/`, o conhecimento destilado da taste-skill, do motor do ui-ux-pro-max, do frontend-design, do Emil Kowalski (motion), das skills oficiais do GSAP e de fontes de 3D/scrollytelling (modo cinematográfico).
 
 ## Princípio central
 
@@ -35,10 +35,10 @@ E UM QA QUE NÃO DEIXA SUBIR NADA GENÉRICO, LENTO OU INCONGRUENTE.
 | Modo refine | [redesign-protocol.md](references/redesign-protocol.md) |
 | Corrigir defeito, print do cliente, "tá cortado/por cima/quebrou no celular" | [fix-requests.md](references/fix-requests.md) |
 | Tem print, Claude Design, Figma ou vai gerar referência | [image-to-code.md](references/image-to-code.md) |
-| Qualquer motion (defaults e proibições) | [motion-patterns.md](references/motion-patterns.md) |
-| Micro-interação ou revisar animação | [motion-craft.md](references/motion-craft.md) |
-| Scroll narrativo, pin, scrub, SplitText, SVG | [gsap-scroll.md](references/gsap-scroll.md) |
-| MOTION 9-10, 3D, WebGL, frames, scroll-world | [cinematic-mode.md](references/cinematic-mode.md) |
+| Motion — só nível Equilibrado+ (defaults e proibições) | [motion-patterns.md](references/motion-patterns.md) |
+| Micro-interação — só nível Equilibrado+ | [motion-craft.md](references/motion-craft.md) |
+| Scroll narrativo, pin, scrub, SplitText, SVG — **só nível Cinematográfico** | [gsap-scroll.md](references/gsap-scroll.md) |
+| 3D, WebGL, frames, scroll-world — **só nível Cinematográfico** | [cinematic-mode.md](references/cinematic-mode.md) |
 | Fase 2 | [house-rules.md](references/house-rules.md) |
 | Fase 4b / 4c | [web-interface-guidelines.md](references/web-interface-guidelines.md) / [slop-rules.md](references/slop-rules.md) |
 | Motor falhou ou skill faltando | [reasoning-fallback.md](references/reasoning-fallback.md) |
@@ -54,18 +54,35 @@ Ler só a referência da fase atual, não todas de uma vez.
 
 Em refine e audit, toda correção de layout leva os blocos **Preserve / Não use / Validação** ([fix-requests.md](references/fix-requests.md) seção 3) e um defeito de layout por vez.
 
-Se ambíguo, perguntar **uma vez**.
+## Funil de impacto
+
+**Base fixa — fora do funil, entra sempre, em todos os níveis.** As camadas de proteção não se negociam no briefing e nunca são removidas por "nível mais baixo": anti-slop ([slop-rules.md](references/slop-rules.md) + impeccable), regras da casa e de comunicação ([house-rules.md](references/house-rules.md) + RULES-GLOBAL), não-quebrar o que já está certo ([fix-requests.md](references/fix-requests.md): Preserve/Não use/Validação), direção/sistema (Design Read + dials + motor) e o QA completo da Fase 4. Isso existe para evitar problema e evitar estrago — é piso, não escolha.
+
+O que o briefing decide é **só o nível de impacto**: cinematográfico ou simples. A resposta de **Impacto** (Fase 0) é o único gatilho que carrega ou deixa de fora as sub-skills pesadas de efeito. O padrão é a contenção: nada pesado entra sem ser pedido. É isto que impede o maestro de jogar 3D, GSAP e gradiente empilhado numa página que só precisava ser limpa.
+
+| Nível | MOTION dial | Acrescenta sobre a base | NÃO entra |
+|---|---|---|---|
+| **Enxuto** (padrão) | 0-1 (none/fade sutil) | nada além da base | motion-craft, gsap-scroll, cinematic-mode |
+| **Equilibrado** | 2-4 | + motion-patterns, motion-craft (micro-interações sutis, 1 detalhe) | gsap-scroll pesado, cinematic-mode |
+| **Cinematográfico** | 5-10 | + gsap-scroll, cinematic-mode (3D/WebGL/scroll-world) | — |
+
+Na dúvida, o nível é o **de baixo**. Subir exige resposta explícita no briefing, nunca "o cliente vai gostar". A base fixa acima vale igual nos três níveis.
 
 ## Workflow
 
-### Fase 0 - Enquadrar
+### Fase 0 - Enquadrar e briefing
 1. Ler o escopo (URL, arquivos, `git status`/`git diff`) e contar os entregáveis pedidos (quantas páginas, seções, telas). Entregar todos; nada de "exemplo de uma e o resto igual".
 2. Detectar o ponto de partida: existe Claude Design/Figma (→ porte fiel, [image-to-code.md](references/image-to-code.md) seção 1-3), site existente (→ refine), ou greenfield (→ build).
-3. Escrever o **Design Read** em uma linha (formato em [aesthetic-direction.md](references/aesthetic-direction.md) seção 1): "Lendo isto como: ... Trabalho principal da página: ...". Ambíguo → uma pergunta.
-4. Target: mobile-first sempre; desktop é complemento.
+3. **Briefing interativo (`AskUserQuestion`), SEMPRE em build/refine antes de qualquer código.** Auto-preencher o que as etapas 1-2 já revelam e perguntar só o que falta, numa **única chamada** (até 4 perguntas). O **nível de impacto é pergunta obrigatória e nunca se presume** — é ele que abre ou fecha as sub-skills (ver [Funil de impacto](#funil-de-impacto)):
+   - **Impacto** (escolha única, obrigatória): `Enxuto` (limpo, rápido, sem efeito — recomendado) · `Equilibrado` (micro-interações sutis, 1 destaque) · `Cinematográfico` (3D/scroll-world/GSAP; troca performance por impacto).
+   - **Prioridade** (múltipla): Conversão · Impressão de marca · Velocidade/SEO · Acessibilidade.
+   - **Tipo** (só se não estiver claro): Página/LP · Site/várias páginas · Seção/componente · Redesign.
+   - **Identidade** (só se a etapa 2 não resolveu): Claude Design/Figma · Marca/brandkit · Partir do zero.
+   Sem resposta / pulou → **Enxuto + Conversão**. Registrar as respostas no `design.md`. Em `audit` não há briefing (não redesenha).
+4. Escrever o **Design Read** em uma linha ([aesthetic-direction.md](references/aesthetic-direction.md) seção 1): "Lendo isto como: ... Trabalho principal da página: ..." e fixar target mobile-first (desktop é complemento).
 
 ### Fase 1 - Direção e sistema (build; refine só em overhaul)
-5. Fixar os **dials** VARIANCE / MOTION / DENSITY pelo preset do tipo de página e justificar ([aesthetic-direction.md](references/aesthetic-direction.md) seção 2).
+5. Fixar os **dials** VARIANCE / MOTION / DENSITY. O **MOTION vem travado pelo nível de impacto do briefing** (Enxuto 0-1, Equilibrado 2-4, Cinematográfico 5-10); VARIANCE e DENSITY pelo preset do tipo de página. Justificar ([aesthetic-direction.md](references/aesthetic-direction.md) seção 2).
 6. Rodar o **motor do ui-ux-pro-max** pelo protocolo de [ui-ux-pro-max-engine.md](references/ui-ux-pro-max-engine.md) (`--domain product` → `--design-system` → aprofundar → `--stack` → `--domain ux`). Filtrar a saída pela tabela da casa. Se o usuário quiser a skill inteira, `Skill: ui-ux-pro-max`.
 7. Projeto sem identidade → escolher um preset de [style-presets.md](references/style-presets.md) ou declarar "sem preset", e justificar. Brief pede marca → [brandkit.md](references/brandkit.md) antes de qualquer tela.
 8. **Passe 1**: plano de tokens (4-6 hex, 1-2 famílias com papel, wireframe ASCII, 2-3 princípios). **Passe 2**: criticar o plano contra o brief e contra os defaults de calibração; dizer o que mudou. Só então codar. Para direção estética mais funda, `Skill: frontend-design:frontend-design`.
@@ -75,7 +92,7 @@ Se ambíguo, perguntar **uma vez**.
 10. `Skill: seek-patterns` (fallback: [house-rules.md](references/house-rules.md)). CTA CAIXA ALTA + shimmer, grade auto-fit, sem max-width de página, padding de seção único, primeira dobra visível, fotos distintas, ícone oficial do WhatsApp, UX de formulário, ícone em cima do texto no mobile.
 
 ### Fase 3 - Construção
-11. Implementar seguindo o design.md. Motion pelo dial ([motion-patterns.md](references/motion-patterns.md); micro-interação pelas receitas e checklist de [motion-craft.md](references/motion-craft.md); scroll narrativo por [gsap-scroll.md](references/gsap-scroll.md); modo cinematográfico só com aceite registrado, por [cinematic-mode.md](references/cinematic-mode.md)). **Zero número fake**, **sem travessão** em texto user-facing, **metadata própria** (title = H1, description = sub + data, og:image da própria página).
+11. Implementar seguindo o design.md. Motion **pelo nível do briefing**: Enxuto = sem motion ou fade sutil; Equilibrado = micro-interações por [motion-craft.md](references/motion-craft.md)/[motion-patterns.md](references/motion-patterns.md); Cinematográfico = scroll narrativo por [gsap-scroll.md](references/gsap-scroll.md) e 3D/WebGL por [cinematic-mode.md](references/cinematic-mode.md). Não subir de nível no meio da construção. **Zero número fake**, **sem travessão** em texto user-facing, **metadata própria** (title = H1, description = sub + data, og:image da própria página).
 12. Imagem que falta vira slot marcado com proporção, listado no resumo. Geração paga só com ok do usuário.
 13. Dependência nova → `supply-chain-guard` antes (versão exata, nunca `@latest`).
 
@@ -88,7 +105,7 @@ Se ambíguo, perguntar **uma vez**.
 
 ### Fase 5 - Gate de deploy
 - Crítico em performance, a11y ou congruência → **bloqueia**.
-- **Modo cinematográfico** (aceite registrado no design.md): performance crítica vira **aprovado com ressalvas declaradas** (números medidos x orçamento do design.md). A11y, reduced-motion, fallback sem WebGL/JS, poster como LCP e congruência continuam **bloqueando**.
+- **Nível Cinematográfico** (escolhido no briefing, registrado no design.md): performance crítica vira **aprovado com ressalvas declaradas** (números medidos x orçamento do design.md). A11y, reduced-motion, fallback sem WebGL/JS, poster como LCP e congruência continuam **bloqueando**.
 - Vários altos em slop → **bloqueia** até domar os 3 piores.
 - Só médios/baixos → **aprovado com ressalvas** (listar).
 - Tudo verde → **aprovado**.
@@ -105,7 +122,8 @@ Resumo final sempre: Design Read, dials, preset/direção, uma linha por auditor
 - "Coloco uns números pra encher" → número fake é inviolável.
 - "Rodei o Impeccable" sem ter rodado → dizer o que rodou de fato.
 - "Subo agora, audito depois" → QA é antes.
-- "Cliente vai adorar 3D" sem pedido nem aceite no design.md → modo cinematográfico não entra.
+- "Cliente vai adorar 3D" sem o nível Cinematográfico escolhido no briefing → não entra. Na dúvida, o nível é o de baixo.
+- "Pulo o briefing, já sei o que fazer" → o briefing (nível de impacto) é obrigatório em build/refine; é ele que impede o excesso.
 - "Gero o vídeo no Higgsfield rapidinho" → crédito pago só com ok e custo estimado antes.
 
 ## Excuse | Reality
@@ -132,6 +150,7 @@ Resumo final sempre: Design Read, dials, preset/direção, uma linha por auditor
 10. **Chamar a skill quando ela existe; usar o conhecimento destilado das references para o resto.** Não copiar lógica que a skill orquestrada já executa melhor.
 11. **Porte de Claude Design/Figma é fiel.**
 12. **Um resumo consolidado sempre**, mesmo tudo verde.
+13. **Briefing antes do código** em build/refine; o nível de impacto nunca se presume e o padrão é o Enxuto.
 
 ## Quando NÃO usar
 
